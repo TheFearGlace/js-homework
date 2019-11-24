@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .target {
+            color: white;
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="list" style="width: 100px;">
+        <lo></lo>
+    </div><br>    
+
+    <input type="button" value="Выбрать первый элемент" onclick="targetFirst()"><br>
+    <input type="button" value="Выбрать последний элемент" onclick="targetLast()"><br>
+    <input type="button" value="Выбрать следующий элемент" onclick="targetNext()"><br>
+    <input type="button" value="Выбрать предыдующий элемент" onclick="targetPrev()"><br>
+    <input type="button" value="Добавить элемент" onclick="addRow()"><br>
+    <input type="button" value="Удалить элемент" onclick="deleteRow()"><br>
+    <input type="button" value="Добавить в начало" onclick="addRowOnTop()">
+
+
+    <script>
+        const list = document.getElementsByClassName('list')[0].firstElementChild;
+
+        function targetFirst() 
+        {
+            if(list.children.length > 0) {
+                removeTarget();
+                list.firstChild.className = 'target';
+            }
+        }
+
+        function targetLast() 
+        {
+            if(list.children.length > 0) {
+                removeTarget();
+                list.lastChild.className = 'target';
+            }
+        }
+
+        function targetNext() 
+        {
+            let target = document.getElementsByClassName('target')[0];
+            if(target !== undefined && target.nextElementSibling !== null) {
+                target.classList.remove('target');
+                target.nextElementSibling.className = 'target';
+            }
+        }
+
+        function targetPrev () 
+        {
+            let target = document.getElementsByClassName('target')[0];
+            if(target !== undefined && target.previousElementSibling !== null) {
+                target.classList.remove('target');
+                target.previousElementSibling.className = 'target';
+            }
+        }
+
+        function addRow() 
+        {
+            let row = document.createElement('li');
+            row.innerHTML = 'test' + (list.children.length + 1);
+            list.appendChild(row);
+        }
+
+        function deleteRow() 
+        {
+            if(list.children.length > 0) {
+                list.removeChild(list.lastChild);
+            } else {
+                alert('empty list');
+            }
+        }
+
+        function addRowOnTop() 
+        {
+            let row = document.createElement('li');
+            row.innerHTML = 'test' + (list.children.length + 1);
+            list.insertBefore(row, list.firstChild);
+        }
+
+        function removeTarget() 
+        {
+            let target = document.getElementsByClassName('target')[0];
+            if(target !== undefined) {
+                target.classList.remove('target');
+            }
+        }
+    </script>
+</body>
+</html>
