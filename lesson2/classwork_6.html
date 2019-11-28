@@ -154,9 +154,11 @@
     <script>
         function dropColumn(num) 
         {
-            let column = document.getElementsByTagName('tbody')[0].children[num];
+            let column = document.getElementsByTagName('tbody')[0].children;
             if(column !== undefined) {
-                column.remove(column);
+				for(let i = 0; i < column.length; i++) {
+					column[i].firstElementChild.remove();
+				}
             }
         }
 

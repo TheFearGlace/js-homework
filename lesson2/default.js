@@ -1,6 +1,8 @@
 function elementChanges(element1, element2) {
 
-    element1.classList.add('newclass');
+    if(element1.classList !== undefined) {
+        element1.classList.add('newclass');
+    }
     console.log(getComputedStyle(element1));
 
     element2.style.marginTop = '10px';

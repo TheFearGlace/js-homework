@@ -22,7 +22,10 @@
 
     <script src="default.js"></script>
     <script>
-            linkTarget();
+            elementChanges(
+                document.querySelector("a[target='_blank']"), 
+                document.querySelector("a[target='_self']")
+                );
     </script>
 </body>
 </html>
