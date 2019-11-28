@@ -25,18 +25,12 @@
         Lorem ipsum        
     </div>
 
+    <script src="default.js"></script>
     <script>
-        let div = document.getElementsByTagName('div')[0];
-        div.classList.add('newclass');
-        
-        console.log(getComputedStyle(div));
-
-        let h1 = document.getElementById('id1');
-        h1.style.marginTop = '10px';
-        h1.style.background = 'red';
-
-        console.log(h1.style);
-        
+            elementChanges(
+                document.getElementsByTagName('div')[0], 
+                document.getElementById('id1')
+                );
     </script>
 </body>
 </html>

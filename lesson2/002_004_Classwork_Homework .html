@@ -9,12 +9,12 @@
     <meta charset="UTF-8">
     <title>Prev+Next</title>
     <style>
- /*     div + p {
+      /* div + p {
             background-color: yellow;
         }
         p ~ ul {
             background: #ff0000;
-        }*/
+        } */
     </style>
 </head>
 <body>
@@ -50,5 +50,12 @@
         <li>Чай</li>
         <li>Молоко</li>
     </ul>
+    <script src="default.js"></script>
+    <script>
+            elementChanges(
+                document.getElementsByTagName('h1')[0], 
+                document.getElementsByTagName('ul')[1].children[1]
+                );
+    </script>
 </body>
 </html>
