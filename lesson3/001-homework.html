@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+<!--     Создайте счетчик секунд, 
+    который начинает отчет с 1 и заканчивается на 30, также добавьте кнопки который останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. 
+    Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+    <input type="text" id="timer" value="">
+    <button onclick="start()">Start</button>
+    <button onclick="restart()">Restart</button>
+    <button onclick="stop()">Stop</button>
+    <label>Установить обратный отсчет?<input type="checkbox" id="reverse"></label>
+
+    <script>
+        let timer = null;
+        let trigger = false;
+        let sec = document.getElementById("timer");
+        let reverse = document.getElementById("reverse");
+        
+        reverse.onclick = function() { 
+            sec.value = reverse.checked ? 30 : '';
+        }
+
+        function start() {
+            if(!trigger) {
+                timer = setInterval(setTime, 1000);
+                trigger = true;
+            }
+        }
+        function setTime() {
+            if(reverse.checked) {
+                sec.value--;
+                if(sec.value <= 1) {
+                    stop();
+                }
+            } else {
+                sec.value++;
+                if(sec.value >= 30) {
+                    stop();
+                }
+            }
+        }
+
+        function stop() {
+            clearInterval(timer);
+            trigger = false;
+        }
+        
+        function restart() {
+            stop()
+            timer = null;
+            sec.value = reverse.checked ? 30 : '';
+            start();
+        }
+    </script>
+</body>
+</html>
