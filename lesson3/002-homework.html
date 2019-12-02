@@ -21,7 +21,9 @@
         let button = document.getElementById('run');
         button.insertAdjacentElement('afterend', ul);
 
-        button.onclick = function() {
+        button.onclick = userText;
+
+        function userText() {
             if (text.value !== undefined || text.value !== "") {
                 let textList = text.value.split(patt);
                 if(textList.length > 1) {
