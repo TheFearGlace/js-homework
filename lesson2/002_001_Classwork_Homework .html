@@ -9,28 +9,33 @@
     <meta charset="UTF-8">
     <title>Id and classes</title>
     <style>
-        #id1 {
+        /* #id1 {
             color: red;
         }
         .class1 {
             color: blue;
             font-size: 14px;
             text-decoration: underline;
-        }
+        } */
     </style>
 </head>
 <body>
     <h1 id="id1">Title</h1>
     <div class="class1" >
-        Lorem ipsum        
+        Lorem ipsum
     </div>
 
     <script src="default.js"></script>
     <script>
-            elementChanges(
-                document.getElementsByTagName('div')[0], 
-                document.getElementById('id1')
-                );
+        let h1 = document.getElementById('id1');
+        h1.style.color = 'red';
+
+        let div = document.querySelector('.class1');
+        div.style.cssText = 'color: blue; font-size: 14px; text-decoration: underline;';
+        elementChanges(
+            document.getElementsByTagName('div')[0],
+            document.getElementById('id1')
+        );
     </script>
 </body>
 </html>
