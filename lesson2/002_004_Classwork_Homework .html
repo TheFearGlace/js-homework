@@ -52,10 +52,12 @@
     </ul>
     <script src="default.js"></script>
     <script>
-            elementChanges(
-                document.getElementsByTagName('h1')[0], 
-                document.getElementsByTagName('ul')[1].children[1]
-                );
+        document.querySelector('div + p').style.backgroundColor = 'yellow';
+        document.querySelector('p ~ ul').style.background = '#ff0000';
+        elementChanges(
+            document.getElementsByTagName('h1')[0],
+            document.getElementsByTagName('ul')[1].children[1]
+        );
     </script>
 </body>
 </html>

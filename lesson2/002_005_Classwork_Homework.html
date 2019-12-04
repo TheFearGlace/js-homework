@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Attr</title>
     <style>
-        a[target] {
+        /* a[target] {
             background-color: yellow;
         }
-        a[target=_blank] { 
+        a[target=_blank] {
             background-color: red;
-}
+} */
     </style>
 </head>
 <body>
@@ -22,10 +22,12 @@
 
     <script src="default.js"></script>
     <script>
-            elementChanges(
-                document.querySelector("a[target='_blank']"), 
-                document.querySelector("a[target='_self']")
-                );
+        document.querySelector('a[target]').style.backgroundColor = 'yellow';
+        document.querySelector('a[target=_blank]').style.backgroundColor = 'red';
+        elementChanges(
+            document.querySelector("a[target='_blank']"),
+            document.querySelector("a[target='_self']")
+        );
     </script>
 </body>
 </html>
