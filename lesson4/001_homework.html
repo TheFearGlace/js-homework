@@ -1,0 +1,52 @@
+<!-- Напишите регулярные выражения, которые будут выбирать
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $2.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>Document</title>
+ </head>
+ <body>
+     <style>
+         div.column {
+            display: block;
+            width: 100px;
+         }
+     </style>
+     <div class="column">
+        <input type="text" pattern="^[0-9]{5}$" placeholder="5 numbers">
+        <span></span>
+        <input type="text" pattern="^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$" placeholder="255.255.255.255">
+        <span></span>
+        <!-- вот тут я уже начал гуглить :) -->
+        <input type="text" pattern="^\$[-+]?[0-9]*\.?[0-9]+$" placeholder="$0.84, $2.84, $4">
+        <span></span>
+        <input type="text" pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$" placeholder="30/12/2016">
+        <span></span>
+        <button id="check">Check</button>
+    </div>
+     <script type="text/javascript">
+     let check = document.getElementById('check');
+     check.onclick = function() {
+        let input = document.querySelectorAll('input');
+        for(let i = 0; i < input.length; i++) {
+            if(input[i].value === '') {
+                input[i].nextElementSibling.innerHTML = '';
+                continue;
+            }
+            let reg = new RegExp(input[i].pattern);
+            let check = input[i].value.match(reg);
+            if(check !== null) {
+                input[i].nextElementSibling.innerHTML = 'true';
+            } else {
+                input[i].nextElementSibling.innerHTML = 'false';
+            }
+        }
+     }
+ 	</script>
+ </body>
+ </html>
