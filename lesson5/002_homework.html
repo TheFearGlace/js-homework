@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function() {
+
+            let divs = document.querySelector('body');
+
+            divs.addEventListener('click', function(e) {
+                if(e.target.nodeName === 'BUTTON') {
+                    e.target.parentElement.remove();
+                }
+            });
+            divs.addEventListener('', function(e) {
+                
+            });
+        }
+    </script>
+</head>
+<body>
+    <div>test 1<button>delete div</button></div>
+    <div>test 2<button>delete div</button></div>
+    <div>test 3<button>delete div</button></div>
+    <div>test 4<button>delete div</button></div>
+    <div>test 5<button>delete div</button></div>
+</body>
+</html>
