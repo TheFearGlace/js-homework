@@ -1,0 +1,44 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт. 
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны вернуться. 
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let a = document.getElementById('link');
+            //"если повторно нажать ссылку див и текст должны вернуться"
+            //не совсем понятна формулировка, куда вернуться? предполоду в исходное состояние
+            a.addEventListener('click', clickOnLink);
+
+            function clickOnLink() {
+                let div = a.children[0];
+                div.classList.toggle('hide');
+            }
+
+            let stop = document.getElementById('stop');
+            stop.addEventListener('click', function() {
+                a.removeEventListener('click', clickOnLink);
+            });
+        }
+    </script>
+</head>
+<body>
+    <a id="link" href="#">click
+        <div class="hide">test</div>
+    </a>
+
+    <button id="stop">stop</button>
+</body>
+</html>
