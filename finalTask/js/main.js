@@ -61,7 +61,7 @@ function loadList(list) {
     //Переключение страниц
     let buttons = document.querySelector('.scroll-buttons');
     buttons.innerHTML = '';
-    buttons.insertAdjacentHTML("afterbegin", "<button>prev</button><button>next</button>");
+    buttons.insertAdjacentHTML("afterbegin", "<div>prev</div><div>next</div>");
     buttons.children[0].addEventListener('click', function() {
         if(list.previous !== null) {
             url = list.previous;
