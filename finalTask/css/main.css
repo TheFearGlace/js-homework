@@ -77,9 +77,7 @@ div.searching input {
 .main td:first-child { 
     color: #FB667A; 
 }
-.additional-info ul li span {
-    color: #FB667A; 
-}
+
 div.scroll-buttons div {
     width: 48px;
     height: 48px;
@@ -101,24 +99,44 @@ div.scroll-buttons div:last-child {
     border-color: #FB667A;
 }
 
-div.additional-info ul {
+div.windows div.homeworld-info ul,
+div.windows div.species-info ul {
     padding-inline-start: 0px;
 }
 
-div.additional-info {
+div.windows div.homeworld-info,
+div.windows div.species-info {
     position: absolute;
-    background-color: #333;
+    background-color: #323846;
     padding: 15px 30px;
-
+    color: #aaa;
 }
 
-div.additional-info ul li {
+.bottom-left {
+    bottom: 10px;
+    left: 10px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 10px;
+}
+
+div.windows div.homeworld-info ul li,
+div.windows div.species-info ul li {
     list-style-type: none;
 }
 
-div.additional-info>span {
+div.windows>div.homeworld-info>span,
+div.windows>div.species-info>span {
     position: absolute;
     right: 15px;
     top: 10px;
     opacity: 0.8;
+    cursor: pointer;
+}
+
+div.windows div.homeworld-info ul li span,
+div.windows div.species-info ul li span {
+    color: #FB667A; 
 }

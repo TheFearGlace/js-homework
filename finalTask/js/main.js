@@ -54,8 +54,8 @@ function loadList(list) {
         <td>${list.body[i].name}</td>
         <td>${list.body[i].birth_year}</td>
         <td>${list.body[i].gender}</td>
-        <td><button onclick="getName(\'${list.body[i].homeworld}\', \'${list.body[i].name}\')">Show</button></td>
-        <td><button onclick="getName(\'${list.body[i].species[0]}\')">Show</button></td>
+        <td><button onclick="getInfo(\'${list.body[i].homeworld}\', \'${list.body[i].name}\', 'homeworld')">Show</button></td>
+        <td><button onclick="getInfo(\'${list.body[i].species[0]}\', \'${list.body[i].name}\', 'species')">Show</button></td>
         </tr>`;
     }
     document.querySelector('table tbody').insertAdjacentHTML('afterbegin', body);
@@ -101,23 +101,28 @@ function showFakeWindow() {
 }
 
 
-function getName(link, characterName) {
+function getInfo(link, characterName, type) {
     fetch(`${link}?format=json`).then(function(response) {
         return response.json();
     }).then(function(data) {
-        //console.log(data);
-        return getAdditionalInfo(data, characterName);
+        if(type === 'homeworld') {
+            getHomeworld(data, characterName);
+        } else {
+            getSpecies(data, characterName);
+        }
     }).catch(function(error) {
         console.error(error);
         return '';
     });
 }
 
-function getAdditionalInfo(data, characterName) {
-    let info = document.querySelector('.additional-info');
+//окно с инфой о homeworld
+function getHomeworld(data, characterName) {
+    let info = document.querySelector('.windows').children[0];
+    info.classList = 'homeworld-info bottom-left';
     info.innerHTML = '';
     let body = `
-    <span>close</span>
+    <span onclick="closeWindow('.homeworld-info')">close</span>
     <h4>${characterName} Homeworld</h4>
     <ul>
         <li>Name: <span>${data.name}</span></li>
@@ -126,25 +131,59 @@ function getAdditionalInfo(data, characterName) {
         <li>Population: <span>${data.population}</span></li>
     </ul>`;
     info.innerHTML = body;
-    info.addEventListener('mousedown', function(e) {
-        document.body.appendChild(info);
-        info.style.left = e.pageX - info.offsetWidth / 2 + 'px';
-        info.style.top = e.pageY - info.offsetHeight / 2 + 'px';
-        info.addEventListener('mousemove', function(e) {
-            info.style.left = e.pageX - info.offsetWidth / 2 + 'px';
-            info.style.top = e.pageY - info.offsetHeight / 2 + 'px';
-        });
-        info.addEventListener('dragstart', function() {
-            return false;
-        });
-    });
-    info.addEventListener('mouseup', function() {
-        info.onmousemove = null;
-        document.onmousemove = null;
-        info.onmousedown = null;
-        document.onmousedown = null;
-    });
-    
-    
-    
+    info.onmousedown = function(event) {
+        moveOn(event, info);
+        this.classList.remove('bottom-left');
+    };
+    info.ondragstart = function() {
+        return false;
+    };
+}
+
+//окно с инфой о species
+function getSpecies(data, characterName) {
+    let info = document.querySelector('.windows').children[1];
+    info.classList = 'species-info bottom-right';
+    info.innerHTML = '';
+    let body = `
+    <span onclick="closeWindow('.species-info')">close</span>
+    <h4>${characterName} Species</h4>
+    <ul>
+        <li>Name: <span>${data.name}</span></li>
+        <li>Artificial: <span>${data.artificial}</span></li>
+        <li>Designation: <span>${data.designation}</span></li>
+        <li>Average height: <span>${data.average_height}</span></li>
+        <li>Average lifespan: <span>${data.average_lifespan}</span></li>
+        <li>Language: <span>${data.language}</span></li>
+    </ul>`;
+    info.innerHTML = body;
+    info.onmousedown = function(event) {
+        moveOn(event, info);
+        this.classList.remove('bottom-right');
+    };
+    info.ondragstart = function() {
+        return false;
+    };
+}
+
+//движение обьектов
+function moveOn(event, object) {
+    let shiftX = event.clientX - object.getBoundingClientRect().left;
+    let shiftY = event.clientY - object.getBoundingClientRect().top;
+    moveAt(event);
+    function moveAt(event) {
+        object.style.left = event.pageX - shiftX + 'px';
+        object.style.top = event.pageY - shiftY + 'px';
+    }
+    document.addEventListener('mousemove', moveAt);
+    object.onmouseup = function() {
+        document.removeEventListener('mousemove', moveAt);
+        object.onmouseup = null;
+    };
+}
+
+function closeWindow(className) {
+    let object = document.querySelector(className);
+    object.innerHTML = '';
+    object.classList = '';
 }
