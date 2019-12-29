@@ -31,7 +31,7 @@ div.main h2 {
     background-color: #323846;
     color: #ccd1dd;
     top: -95px;
-    left: 2%;
+    left: 27.5px;
     border-radius: 10px;
     height: 115px;
 }
@@ -91,6 +91,14 @@ div.scroll-buttons div:first-child {
     transform: rotate(45deg);
     border-color: #FB667A;
 }
+div.scroll-buttons div:first-child:active {
+    box-shadow: -6px 6px 3px 3px #aaa;
+    transition: box-shadow 0.3s ease-in-out;
+}
+div.scroll-buttons div:last-child:active {
+    box-shadow: -6px 6px 3px 3px #aaa;
+    transition: box-shadow 0.1s ease-in-out;
+}
 div.scroll-buttons div:last-child {
     right: -50px;
     border-bottom: 6px solid;
@@ -140,3 +148,23 @@ div.windows div.homeworld-info ul li span,
 div.windows div.species-info ul li span {
     color: #FB667A; 
 }
+
+
+
+tbody tr td button {
+    text-decoration: none;
+    color: #ccd1dd;
+    background-color: #1F2739;
+    border: none;
+    outline: none;
+    box-shadow:0 2px 3px #FB667A;
+    text-align: center;
+    line-height: 26px;
+    display: inline;
+    margin: auto;
+  }
+
+  tbody tr td button:active {
+    box-shadow:0 2px 3px #323846;
+    background-color: #333;
+  }
