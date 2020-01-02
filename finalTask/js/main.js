@@ -155,7 +155,7 @@ function getHomeworld(data, characterName) {
     info.onmousedown = function(event) {
         moveOn(event, info);
         this.classList.remove('bottom-left');
-        drag = true;
+        dragHomeWindow = true;
     };
     info.ondragstart = function() {
         return false;
@@ -186,6 +186,7 @@ function getSpecies(data, characterName) {
     info.onmousedown = function(event) {
         moveOn(event, info);
         this.classList.remove('bottom-right');
+        dragSpecieWindow = true;
     };
     info.ondragstart = function() {
         return false;
