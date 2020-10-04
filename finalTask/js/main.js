@@ -3,7 +3,7 @@ window.onload = checkCookie;
 let mainList = {};
 let dragHomeWindow = false;
 let dragSpecieWindow = false;
-let url = 'https://swapi.co/api/people/?format=json&page=1';
+let url = 'https://swapi.dev/api/people/?format=json&page=1';
 const mainKeys = new Array('name', 'birth_year', 'gender', 'homeworld', 'species');
 
 function checkCookie() {
@@ -103,7 +103,7 @@ function search() {
     this.value = this.value !== undefined ? this.value : getCookie('name');
     setCookie('name', this.value, {'max-age': 600});
     deleteCookie('url');
-    let link = `https://swapi.co/api/people/?format=json&search=${getCookie('name')}`;
+    let link = `https://swapi.dev/api/people/?format=json&search=${getCookie('name')}`;
     url = link;
     getList();
 }
